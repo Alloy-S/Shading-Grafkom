@@ -122,21 +122,21 @@ public class Main {
 //            new ArrayList<>(),
 //            new Vector4f(0.0f,1.0f,1.0f,1.0f)
 //        ));
-//        objects.add(new Sphere(
-//                Arrays.asList(
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//                ),
-//                new ArrayList<>(),
-//                new ArrayList<>(),
-//                new Vector4f(0.0f,1.0f,0.0f,1.0f),
-//                Arrays.asList(0.0f,0.0f,0.0f),
-//                0.125f,
-//                0.125f,
-//                0.125f,
-//                36,
-//                18
-//        ));
+        objects.add(new Sphere(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new Vector4f(0.0f,1.0f,0.0f,1.0f),
+                Arrays.asList(0.0f,0.0f,0.0f),
+                0.125f,
+                0.125f,
+                0.125f,
+                36,
+                18
+        ));
 //        objects.get(0).translateObject(0.5f,0.0f,0.0f);
 //        objects.get(0).scaleObject(1f,1f,1f);
 //
@@ -221,12 +221,12 @@ public class Main {
 
 //        importedObjects.add(OBJLoader.loadObjModel("Hammer"));
 //        importedObjects.add(OBJLoader.loadObjModel("model"));
-        importedObjects.add(OBJLoader.loadObjModel("monkey"));
+//        importedObjects.add(OBJLoader.loadObjModel("monkey"));
 //        importedObjects.add(OBJLoader.loadObjModel("bugatti"));
 
 //        importedObjects.get(1).translateObject(30f, 0f, 0f);
 
-//        importedObjects.add(OBJLoader.loadObjModel("cube"));
+        importedObjects.add(OBJLoader.loadObjModel("suzanne"));
     }
     public void input(){
         float move = 0.1f;

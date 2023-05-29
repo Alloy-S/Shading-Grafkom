@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47ca7ba8-3bef-4b21-b5d8-3255f6baca0f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/cube.obj" beforeDir="false" afterPath="$PROJECT_DIR$/res/cube.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/monkey.mtl" beforeDir="false" afterPath="$PROJECT_DIR$/res/monkey.mtl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Engine/ImportedObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Engine/ImportedObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Engine/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Engine/Sphere.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/RenderEngine/OBJLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RenderEngine/OBJLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Engine/ImportedObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Engine/ImportedObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Engine/Sphere.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Engine/Sphere.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/RenderEngine/OBJLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RenderEngine/OBJLoader.class" afterDir="false" />
     </list>

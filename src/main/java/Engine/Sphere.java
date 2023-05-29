@@ -32,6 +32,8 @@ public class Sphere extends Circle{
         System.out.println("normal: " + this.normal);
         System.out.println("vertices: " + this.vertices);
     }
+
+
     public void createBox(){
         Vector3f temp = new Vector3f();
         ArrayList<Vector3f> tempVertices = new ArrayList<>();

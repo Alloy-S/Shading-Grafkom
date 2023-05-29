@@ -134,6 +134,7 @@ public class OBJLoader {
             indicesArray[i] = indices.get(i);
         }
 
+
 //        System.out.println("indices: " + indices);
 //        System.out.println("vertices Array: " + verticesArray + "size: " + verticesArray.size());
         ImportedObject object = new ImportedObject(Arrays.asList(
@@ -145,11 +146,12 @@ public class OBJLoader {
                         ("resources/shaders/scene.frag"
                                 , GL_FRAGMENT_SHADER)
                 ),
+                indices,
                 verticesArray,
                 normalsArray,
                 new Vector4f(0.0f,1.0f,1.0f,1.0f));
 
-        System.out.println("normal array: " + normalsArray);
+
         return object;
     }
 
