@@ -59,8 +59,10 @@ public class OBJLoader {
                         textures.add(texture);
                     } else if (line.startsWith("vn ")) {
 //                        System.out.println("VN");
+                        System.out.println("entry normal: " + line);
                         Vector3f normal = new Vector3f(Float.parseFloat(currentLine[1]), Float.parseFloat(currentLine[2]), Float.parseFloat(currentLine[3]));
                         normals.add(normal);
+//                        System.out.println("normal array: " + normals);
                     } else if (line.startsWith("f ")) {
                         texturesArray = new float[vertices.size() * 2];
 //                    normalsArray = new float[vertices.size() * 3];
@@ -147,7 +149,7 @@ public class OBJLoader {
                 normalsArray,
                 new Vector4f(0.0f,1.0f,1.0f,1.0f));
 
-//        System.out.println("normal array: " + normalsArray);
+        System.out.println("normal array: " + normalsArray);
         return object;
     }
 
@@ -164,9 +166,12 @@ public class OBJLoader {
 //        textureArray[currentVertexPointer * 2 + 1] = 1 - currentTex.y;
 
         int indexNormal = Integer.parseInt(vertexData[2]) - 1;
-
-        Vector3f currentNorm = normals.get(indexNormal);
-//        System.out.println("current normal: " + currentNorm);
+        System.out.println("index normal: " + indexNormal);
+        Vector3f currentNorm = new Vector3f();
+        currentNorm.x = normals.get(indexNormal).x;
+        currentNorm.y = normals.get(indexNormal).y;
+        currentNorm.z = normals.get(indexNormal).z;
+        System.out.println("current normal: " + currentNorm);
         normalArray.add(currentNorm);
     }
 }
