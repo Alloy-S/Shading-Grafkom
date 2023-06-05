@@ -12,10 +12,10 @@ public class Rectangle extends Object {
     List<Integer> index;
     int ibo;
     //index buffer object || element buffer object
-    public Rectangle(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, List<Vector3f> normal,
+    public Rectangle(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices,
                      Vector4f color,
                      List<Integer> index) {
-        super(shaderModuleDataList, vertices, normal, color);
+        super(shaderModuleDataList, vertices, color);
         this.index = index;
         ibo = glGenBuffers();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);

@@ -69,6 +69,10 @@ public class Camera {
         recalculate();
     }
 
+    public Vector3f getDirection() {
+        return direction;
+    }
+
     private void recalculate() {
         viewMatrix.identity()
                 .rotateX(rotation.x)

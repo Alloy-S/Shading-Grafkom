@@ -12,8 +12,8 @@ public class Circle extends Object {
 
     Float radiusX;
     Float radiusY;
-    public Circle(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, List<Vector3f> normal, Vector4f color, List<Float> centerPoint, Float radiusX,Float radiusY) {
-        super(shaderModuleDataList, vertices, normal, color);
+    public Circle(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX,Float radiusY) {
+        super(shaderModuleDataList, vertices, color);
         this.centerPoint = centerPoint;
         this.radiusX = radiusX;
         this.radiusY = radiusY;

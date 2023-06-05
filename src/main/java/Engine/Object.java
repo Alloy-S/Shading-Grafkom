@@ -15,20 +15,18 @@ import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
-public class Object extends ShaderProgram {
+public class Object extends ShaderProgram{
 
     List<Vector3f> vertices;
-    List<Vector3f> normal;
     int vao;
     int vbo;
-    int nbo;
     UniformsMap uniformsMap;
     Vector4f color;
 
     public Matrix4f model;
 
     int vboColor;
-    List<Vector3f> verticesColor;
+//    List<Vector3f> normal = new ArrayList<>();
     List<Object> childObject;
     List<Float> centerPoint;
 
@@ -49,34 +47,28 @@ public class Object extends ShaderProgram {
         this.centerPoint = centerPoint;
     }
 
-
+    List<Vector3f> verticesColor;
     public Object(List<ShaderModuleData> shaderModuleDataList
             , List<Vector3f> vertices
-            , List<Vector3f> normal
             , Vector4f color) {
         super(shaderModuleDataList);
         this.vertices = vertices;
-        this.normal = normal;
+//        this.normal = normal;
 //        setupVAOVBO();
         uniformsMap = new UniformsMap(getProgramId());
-        uniformsMap.createUniform(
-                "uni_color");
-        uniformsMap.createUniform(
-                "model");
-        uniformsMap.createUniform(
-                "projection");
-        uniformsMap.createUniform(
-                "view");
-//        uniformsMap.createUniform("lightColor");
-//        uniformsMap.createUniform("lightPos");
+//        uniformsMap.createUniform(
+//                "uni_color");
+//        uniformsMap.createUniform(
+//                "model");
+//        uniformsMap.createUniform(
+//                "projection");
+//        uniformsMap.createUniform(
+//                "view");
         this.color = color;
         model = new Matrix4f().identity();
         childObject = new ArrayList<>();
-        centerPoint = Arrays.asList(0f, 0f, 0f);
-
-//        System.out.println("vertices: " + vertices);
+        centerPoint = Arrays.asList(0f,0f,0f);
     }
-
     public Object(List<ShaderModuleData> shaderModuleDataList,
                   List<Vector3f> vertices,
                   List<Vector3f> verticesColor) {
@@ -85,8 +77,7 @@ public class Object extends ShaderProgram {
         this.verticesColor = verticesColor;
         setupVAOVBOWithVerticesColor();
     }
-
-    public void setupVAOVBO() {
+    public void setupVAOVBO(){
         //set vao
         vao = glGenVertexArrays();
         glBindVertexArray(vao);
@@ -97,19 +88,8 @@ public class Object extends ShaderProgram {
         glBufferData(GL_ARRAY_BUFFER,
                 Utils.listoFloat(vertices),
                 GL_STATIC_DRAW);
-
-        //set nbo
-        nbo = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER, nbo);
-        glBufferData(GL_ARRAY_BUFFER,
-                Utils.listoFloat(normal),
-                GL_STATIC_DRAW);
-
-        uniformsMap.createUniform("lightColor");
-        uniformsMap.createUniform("lightPos");
     }
-
-    public void setupVAOVBOWithVerticesColor() {
+    public void setupVAOVBOWithVerticesColor(){
         //set vao
         vao = glGenVertexArrays();
         glBindVertexArray(vao);
@@ -128,8 +108,7 @@ public class Object extends ShaderProgram {
                 Utils.listoFloat(verticesColor),
                 GL_STATIC_DRAW);
     }
-
-    public void drawSetup(Camera camera, Projection projection) {
+    public void drawSetup(Camera camera, Projection projection){
         bind();
         uniformsMap.setUniform(
                 "uni_color", color);
@@ -148,8 +127,7 @@ public class Object extends ShaderProgram {
                 0, 0);
 
     }
-
-    public void drawSetupWithVerticesColor() {
+    public void drawSetupWithVerticesColor(){
         bind();
         // Bind VBO
         glEnableVertexAttribArray(0);
@@ -167,8 +145,7 @@ public class Object extends ShaderProgram {
                 false,
                 0, 0);
     }
-
-    public void draw(Camera camera, Projection projection) {
+    public void draw(Camera camera, Projection projection){
         drawSetup(camera, projection);
         // Draw the vertices
         //optional
@@ -184,12 +161,11 @@ public class Object extends ShaderProgram {
         glDrawArrays(GL_TRIANGLES,
                 0,
                 vertices.size());
-        for (Object child : childObject) {
-            child.draw(camera, projection);
+        for(Object child:childObject){
+            child.draw(camera,projection);
         }
     }
-
-    public void drawWithVerticesColor() {
+    public void drawWithVerticesColor(){
         drawSetupWithVerticesColor();
         // Draw the vertices
         //optional
@@ -206,8 +182,7 @@ public class Object extends ShaderProgram {
                 0,
                 vertices.size());
     }
-
-    //    public void drawLine(){
+//    public void drawLine(){
 //        drawSetup();
 //        // Draw the vertices
 //        //optional
@@ -217,41 +192,37 @@ public class Object extends ShaderProgram {
 //                0,
 //                vertices.size());
 //    }
-    public void addVertices(Vector3f newVertices) {
+    public void addVertices(Vector3f newVertices){
         vertices.add(newVertices);
         setupVAOVBO();
     }
-
-    public void translateObject(Float offsetX, Float offsetY, Float offsetZ) {
-        model = new Matrix4f().translate(offsetX, offsetY, offsetZ).mul(new Matrix4f(model));
+    public void translateObject(Float offsetX,Float offsetY,Float offsetZ){
+        model = new Matrix4f().translate(offsetX,offsetY,offsetZ).mul(new Matrix4f(model));
         updateCenterPoint();
-        for (Object child : childObject) {
-            child.translateObject(offsetX, offsetY, offsetZ);
+        for(Object child:childObject){
+            child.translateObject(offsetX,offsetY,offsetZ);
         }
     }
-
-    public void rotateObject(Float degree, Float x, Float y, Float z) {
-        model = new Matrix4f().rotate(degree, x, y, z).mul(new Matrix4f(model));
+    public void rotateObject(Float degree, Float x,Float y,Float z){
+        model = new Matrix4f().rotate(degree,x,y,z).mul(new Matrix4f(model));
         updateCenterPoint();
-        for (Object child : childObject) {
-            child.rotateObject(degree, x, y, z);
+        for(Object child:childObject){
+            child.rotateObject(degree,x,y,z);
         }
 
     }
-
-    public void updateCenterPoint() {
+    public void updateCenterPoint(){
         Vector3f destTemp = new Vector3f();
-        model.transformPosition(0.0f, 0.0f, 0.0f, destTemp);
-        centerPoint.set(0, destTemp.x);
-        centerPoint.set(1, destTemp.y);
-        centerPoint.set(2, destTemp.z);
+        model.transformPosition(0.0f,0.0f,0.0f,destTemp);
+        centerPoint.set(0,destTemp.x);
+        centerPoint.set(1,destTemp.y);
+        centerPoint.set(2,destTemp.z);
         System.out.println(centerPoint.get(0) + " " + centerPoint.get(1));
     }
-
-    public void scaleObject(Float scaleX, Float scaleY, Float scaleZ) {
-        model = new Matrix4f().scale(scaleX, scaleY, scaleZ).mul(new Matrix4f(model));
-        for (Object child : childObject) {
-            child.translateObject(scaleX, scaleY, scaleZ);
+    public void scaleObject(Float scaleX,Float scaleY,Float scaleZ){
+        model = new Matrix4f().scale(scaleX,scaleY,scaleZ).mul(new Matrix4f(model));
+        for(Object child:childObject){
+            child.translateObject(scaleX,scaleY,scaleZ);
         }
     }
 

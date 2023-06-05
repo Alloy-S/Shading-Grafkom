@@ -14,27 +14,25 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 
-public class Sphere extends Circle{
+public class Sphere extends Circle {
     float radiusZ;
     int stackCount;
     int sectorCount;
-//    List<Vector3f> normal;
-//    int nbo;
-    public Sphere(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, List<Vector3f> normal, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ,
-                  int sectorCount,int stackCount) {
-        super(shaderModuleDataList, vertices, normal, color, centerPoint, radiusX, radiusY);
+    List<Vector3f> normal;
+    int nbo;
+
+    public Sphere(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ,
+                  int sectorCount, int stackCount) {
+        super(shaderModuleDataList, vertices, color, centerPoint, radiusX, radiusY);
         this.radiusZ = radiusZ;
         this.stackCount = stackCount;
         this.sectorCount = sectorCount;
         createBoxVertices();
 //        createSphere();
         setupVAOVBO();
-        System.out.println("normal: " + this.normal);
-        System.out.println("vertices: " + this.vertices);
     }
 
-
-    public void createBox(){
+    public void createBox() {
         Vector3f temp = new Vector3f();
         ArrayList<Vector3f> tempVertices = new ArrayList<>();
         //TITIK 1
@@ -92,67 +90,67 @@ public class Sphere extends Circle{
         vertices.add(tempVertices.get(1));
         vertices.add(tempVertices.get(2));
         vertices.add(tempVertices.get(3));
-//        //kotak yg sisi depan
-//        vertices.add(tempVertices.get(4));
-//        vertices.add(tempVertices.get(5));
-//        vertices.add(tempVertices.get(6));
-//        vertices.add(tempVertices.get(7));
-//        //kotak yg sisi kiri
-//        vertices.add(tempVertices.get(0));
-//        vertices.add(tempVertices.get(4));
-//        vertices.add(tempVertices.get(7));
-//        vertices.add(tempVertices.get(3));
-//        //kotak yg sisi kanan
-//        vertices.add(tempVertices.get(1));
-//        vertices.add(tempVertices.get(5));
-//        vertices.add(tempVertices.get(6));
-//        vertices.add(tempVertices.get(2));
-//        //kotak yg sisi atas
-//        vertices.add(tempVertices.get(0));
-//        vertices.add(tempVertices.get(1));
-//        vertices.add(tempVertices.get(5));
-//        vertices.add(tempVertices.get(4));
-//        //kotak yg sisi bawah
-//        vertices.add(tempVertices.get(3));
-//        vertices.add(tempVertices.get(2));
-//        vertices.add(tempVertices.get(7));
-//        vertices.add(tempVertices.get(6));
+        //kotak yg sisi depan
+        vertices.add(tempVertices.get(4));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(7));
+        //kotak yg sisi kiri
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(4));
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(3));
+        //kotak yg sisi kanan
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(2));
+        //kotak yg sisi atas
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(4));
+        //kotak yg sisi bawah
+        vertices.add(tempVertices.get(3));
+        vertices.add(tempVertices.get(2));
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(6));
 
         normal = new ArrayList<>(Arrays.asList(
                 //belakang
-                new Vector3f(0.0f,0.0f,-1.0f),
-                new Vector3f(0.0f,0.0f,-1.0f),
-                new Vector3f(0.0f,0.0f,-1.0f),
-                new Vector3f(0.0f,0.0f,-1.0f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
                 //depan
-                new Vector3f(0.0f,0.0f,1.0f),
-                new Vector3f(0.0f,0.0f,1.0f),
-                new Vector3f(0.0f,0.0f,1.0f),
-                new Vector3f(0.0f,0.0f,1.0f),
+                new Vector3f(0.0f, 0.0f, 1.0f),
+                new Vector3f(0.0f, 0.0f, 1.0f),
+                new Vector3f(0.0f, 0.0f, 1.0f),
+                new Vector3f(0.0f, 0.0f, 1.0f),
                 //kiri
-                new Vector3f(-1.0f,0.0f,0.0f),
-                new Vector3f(-1.0f,0.0f,0.0f),
-                new Vector3f(-1.0f,0.0f,0.0f),
-                new Vector3f(-1.0f,0.0f,0.0f),
+                new Vector3f(-1.0f, 0.0f, 0.0f),
+                new Vector3f(-1.0f, 0.0f, 0.0f),
+                new Vector3f(-1.0f, 0.0f, 0.0f),
+                new Vector3f(-1.0f, 0.0f, 0.0f),
                 //kanan
-                new Vector3f(1.0f,0.0f,0.0f),
-                new Vector3f(1.0f,0.0f,0.0f),
-                new Vector3f(1.0f,0.0f,0.0f),
-                new Vector3f(1.0f,0.0f,0.0f),
+                new Vector3f(1.0f, 0.0f, 0.0f),
+                new Vector3f(1.0f, 0.0f, 0.0f),
+                new Vector3f(1.0f, 0.0f, 0.0f),
+                new Vector3f(1.0f, 0.0f, 0.0f),
                 //atas
-                new Vector3f(0.0f,1.0f,0.0f),
-                new Vector3f(0.0f,1.0f,0.0f),
-                new Vector3f(0.0f,1.0f,0.0f),
-                new Vector3f(0.0f,1.0f,0.0f),
+                new Vector3f(0.0f, 1.0f, 0.0f),
+                new Vector3f(0.0f, 1.0f, 0.0f),
+                new Vector3f(0.0f, 1.0f, 0.0f),
+                new Vector3f(0.0f, 1.0f, 0.0f),
                 //bawah
-                new Vector3f(0.0f,-1.0f,0.0f),
-                new Vector3f(0.0f,-1.0f,0.0f),
-                new Vector3f(0.0f,-1.0f,0.0f),
-                new Vector3f(0.0f,-1.0f,0.0f)
+                new Vector3f(0.0f, -1.0f, 0.0f),
+                new Vector3f(0.0f, -1.0f, 0.0f),
+                new Vector3f(0.0f, -1.0f, 0.0f),
+                new Vector3f(0.0f, -1.0f, 0.0f)
         ));
     }
-    public void createBoxVertices()
-    {
+
+    public void createBoxVertices() {
         System.out.println("code");
         vertices.clear();
         Vector3f temp = new Vector3f();
@@ -214,7 +212,7 @@ public class Sphere extends Circle{
         vertices.add(tempVertices.get(2));
         vertices.add(tempVertices.get(3));
         vertices.add(tempVertices.get(0));
-//        //kotak depan
+        //kotak depan
         vertices.add(tempVertices.get(4));
         vertices.add(tempVertices.get(5));
         vertices.add(tempVertices.get(6));
@@ -222,7 +220,7 @@ public class Sphere extends Circle{
         vertices.add(tempVertices.get(6));
         vertices.add(tempVertices.get(7));
         vertices.add(tempVertices.get(4));
-//        //kotak samping kiri
+        //kotak samping kiri
         vertices.add(tempVertices.get(0));
         vertices.add(tempVertices.get(1));
         vertices.add(tempVertices.get(4));
@@ -256,66 +254,67 @@ public class Sphere extends Circle{
         vertices.add(tempVertices.get(3));
 
         normal = new ArrayList<>(Arrays.asList(
-                new Vector3f(0.0f,  0.0f, -1.0f),
-                new Vector3f(0.0f,  0.0f, -1.0f),
-                new Vector3f(0.0f,  0.0f, -1.0f),
-                new Vector3f(0.0f,  0.0f, -1.0f),
-                new Vector3f(0.0f,  0.0f, -1.0f),
-                new Vector3f(0.0f,  0.0f, -1.0f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
 
-                new Vector3f(0.0f,  0.0f,  1.0f),
-                new Vector3f(0.0f,  0.0f,  1.0f),
-                new Vector3f(0.0f,  0.0f,  1.0f),
-                new Vector3f(0.0f,  0.0f,  1.0f),
-                new Vector3f(0.0f,  0.0f,  1.0f),
-                new Vector3f(0.0f,  0.0f,  1.0f),
+                new Vector3f(0.0f, 0.0f, 1.0f),
+                new Vector3f(0.0f, 0.0f, 1.0f),
+                new Vector3f(0.0f, 0.0f, 1.0f),
+                new Vector3f(0.0f, 0.0f, 1.0f),
+                new Vector3f(0.0f, 0.0f, 1.0f),
+                new Vector3f(0.0f, 0.0f, 1.0f),
 
-                new Vector3f(-1.0f,  0.0f,  0.0f),
-                new Vector3f(-1.0f,  0.0f,  0.0f),
-                new Vector3f(-1.0f,  0.0f,  0.0f),
-                new Vector3f(-1.0f,  0.0f,  0.0f),
-                new Vector3f(-1.0f,  0.0f,  0.0f),
-                new Vector3f(-1.0f,  0.0f,  0.0f),
+                new Vector3f(-1.0f, 0.0f, 0.0f),
+                new Vector3f(-1.0f, 0.0f, 0.0f),
+                new Vector3f(-1.0f, 0.0f, 0.0f),
+                new Vector3f(-1.0f, 0.0f, 0.0f),
+                new Vector3f(-1.0f, 0.0f, 0.0f),
+                new Vector3f(-1.0f, 0.0f, 0.0f),
 
-                new Vector3f(1.0f,  0.0f,  0.0f),
-                new Vector3f(1.0f,  0.0f,  0.0f),
-                new Vector3f(1.0f,  0.0f,  0.0f),
-                new Vector3f(1.0f,  0.0f,  0.0f),
-                new Vector3f(1.0f,  0.0f,  0.0f),
-                new Vector3f(1.0f,  0.0f,  0.0f),
+                new Vector3f(1.0f, 0.0f, 0.0f),
+                new Vector3f(1.0f, 0.0f, 0.0f),
+                new Vector3f(1.0f, 0.0f, 0.0f),
+                new Vector3f(1.0f, 0.0f, 0.0f),
+                new Vector3f(1.0f, 0.0f, 0.0f),
+                new Vector3f(1.0f, 0.0f, 0.0f),
 
-                new Vector3f(0.0f, -1.0f,  0.0f),
-                new Vector3f(0.0f, -1.0f,  0.0f),
-                new Vector3f( 0.0f, -1.0f,  0.0f),
-                new Vector3f(0.0f, -1.0f,  0.0f),
-                new Vector3f(0.0f, -1.0f,  0.0f),
-                new Vector3f(0.0f, -1.0f,  0.0f),
+                new Vector3f(0.0f, -1.0f, 0.0f),
+                new Vector3f(0.0f, -1.0f, 0.0f),
+                new Vector3f(0.0f, -1.0f, 0.0f),
+                new Vector3f(0.0f, -1.0f, 0.0f),
+                new Vector3f(0.0f, -1.0f, 0.0f),
+                new Vector3f(0.0f, -1.0f, 0.0f),
 
-                new Vector3f(0.0f,  1.0f,  0.0f),
-                new Vector3f(0.0f,  1.0f,  0.0f),
-                new Vector3f(0.0f,  1.0f,  0.0f),
-                new Vector3f(0.0f,  1.0f,  0.0f),
-                new Vector3f(0.0f,  1.0f,  0.0f),
-                new Vector3f(0.0f,  1.0f,  0.0f)
+                new Vector3f(0.0f, 1.0f, 0.0f),
+                new Vector3f(0.0f, 1.0f, 0.0f),
+                new Vector3f(0.0f, 1.0f, 0.0f),
+                new Vector3f(0.0f, 1.0f, 0.0f),
+                new Vector3f(0.0f, 1.0f, 0.0f),
+                new Vector3f(0.0f, 1.0f, 0.0f)
         ));
     }
-//    public void setupVAOVBO(){
-//        super.setupVAOVBO();
-//
-//        //set nbo
-//        nbo = glGenBuffers();
-//        glBindBuffer(GL_ARRAY_BUFFER, nbo);
-//        glBufferData(GL_ARRAY_BUFFER,
-//                Utils.listoFloat(normal),
-//                GL_STATIC_DRAW);
-//
+
+    public void setupVAOVBO() {
+        super.setupVAOVBO();
+
+        //set nbo
+        nbo = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER, nbo);
+        glBufferData(GL_ARRAY_BUFFER,
+                Utils.listoFloat(normal),
+                GL_STATIC_DRAW);
+
 //        uniformsMap.createUniform("lightColor");
 //        uniformsMap.createUniform("lightPos");
-//
-//    }
 
-    public void drawSetup(Camera camera, Projection projection){
-        super.drawSetup(camera,projection);
+    }
+
+    public void drawSetup(Camera camera, Projection projection) {
+        super.drawSetup(camera, projection);
 
         // Bind VBO
         glEnableVertexAttribArray(1);
@@ -324,41 +323,71 @@ public class Sphere extends Circle{
                 GL_FLOAT,
                 false,
                 0, 0);
+        //directional Light
+        uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f, -1.0f, -0.3f));
+        uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f, 0.05f, 0.05f));
+        uniformsMap.setUniform("dirLight.diffuse", new Vector3f(0.4f, 0.4f, 0.4f));
+        uniformsMap.setUniform("dirLight.specular", new Vector3f(0.5f, 0.5f, 0.5f));
+        //posisi pointLight
+        Vector3f[] _pointLightPositions = {
+                new Vector3f(0.7f, 0.2f, 2.0f),
+                new Vector3f(2.3f, -3.3f, -4.0f),
+                new Vector3f(-4.0f, 2.0f, -12.0f),
+                new Vector3f(0.0f, 0.0f, -3.0f)
+        };
+        for (int i = 0; i < _pointLightPositions.length; i++) {
+            uniformsMap.setUniform("pointLights[" + i + "].position", _pointLightPositions[i]);
+            uniformsMap.setUniform("pointLights[" + i + "].ambient", new Vector3f(0.05f, 0.05f, 0.05f));
+            uniformsMap.setUniform("pointLights[" + i + "].diffuse", new Vector3f(0.8f, 0.8f, 0.8f));
+            uniformsMap.setUniform("pointLights[" + i + "].specular", new Vector3f(1.0f, 1.0f, 1.0f));
+            uniformsMap.setUniform("pointLights[" + i + "].constant", 1.0f);
+            uniformsMap.setUniform("pointLights[" + i + "].linear", 0.09f);
+            uniformsMap.setUniform("pointLights[" + i + "].quadratic", 0.032f);
 
-        uniformsMap.setUniform("lightColor",new Vector3f(1.0f,1.0f,1.0f));
-        uniformsMap.setUniform("lightPos",new Vector3f(1.0f,1.0f,1.0f));
+        }
+
+        //spotlight
+        uniformsMap.setUniform("spotLight.position", camera.getPosition());
+        uniformsMap.setUniform("spotLight.direction", camera.getDirection());
+        uniformsMap.setUniform("spotLight.ambient", new Vector3f(0.0f, 0.0f, 0.0f));
+        uniformsMap.setUniform("spotLight.diffuse", new Vector3f(1.0f, 1.0f, 1.0f));
+        uniformsMap.setUniform("spotLight.specular", new Vector3f(1.0f, 1.0f, 1.0f));
+        uniformsMap.setUniform("spotLight.constant", 1.0f);
+        uniformsMap.setUniform("spotLight.linear", 0.09f);
+        uniformsMap.setUniform("spotLight.quadratic", 0.032f);
+        uniformsMap.setUniform("spotLight.cutOff", (float) Math.cos(Math.toRadians(12.5f)));
+        uniformsMap.setUniform("spotLight.outerCutOff", (float) Math.cos(Math.toRadians(12.5f)));
+
+        uniformsMap.setUniform("viewPos", camera.getPosition());
     }
-//    public void draw(){
-//        drawSetup();
-//        glLineWidth(2); //ketebalan garis
-//        glPointSize(2); //besar kecil vertex
-//        glDrawArrays(GL_LINE_STRIP,
-//                0,
-//                vertices.size());
-//    }
+
+    //    public void draw(){seSphere(){
     public void createSphere(){
-        float pi = (float)Math.PI;
+    float pi = (float) Math.PI;
 
-        float sectorStep = 2 * (float)Math.PI / sectorCount;
-        float stackStep = (float)Math.PI / stackCount;
-        float sectorAngle, StackAngle, x, y, z;
+    float sectorStep = 2 * (float) Math.PI / sectorCount;
+    float stackStep = (float) Math.PI / stackCount;
+    float sectorAngle, StackAngle, x, y, z;
 
-        for (int i = 0; i <= stackCount; ++i)
-        {
-            StackAngle = pi / 2 - i * stackStep;
-            x = radiusX * (float)Math.cos(StackAngle);
-            y = radiusY * (float)Math.cos(StackAngle);
-            z = radiusZ * (float)Math.sin(StackAngle);
+        for(
+    int i = 0;
+    i <=stackCount; ++i)
 
-            for (int j = 0; j <= sectorCount; ++j)
-            {
-                sectorAngle = j * sectorStep;
-                Vector3f temp_vector = new Vector3f();
-                temp_vector.x = centerPoint.get(0) + x * (float)Math.cos(sectorAngle);
-                temp_vector.y = centerPoint.get(1) + y * (float)Math.sin(sectorAngle);
-                temp_vector.z = centerPoint.get(2) + z;
-                vertices.add(temp_vector);
-            }
+    {
+        StackAngle = pi / 2 - i * stackStep;
+        x = radiusX * (float) Math.cos(StackAngle);
+        y = radiusY * (float) Math.cos(StackAngle);
+        z = radiusZ * (float) Math.sin(StackAngle);
+
+        for (int j = 0; j <= sectorCount; ++j) {
+            sectorAngle = j * sectorStep;
+            Vector3f temp_vector = new Vector3f();
+            temp_vector.x = centerPoint.get(0) + x * (float) Math.cos(sectorAngle);
+            temp_vector.y = centerPoint.get(1) + y * (float) Math.sin(sectorAngle);
+            temp_vector.z = centerPoint.get(2) + z;
+            vertices.add(temp_vector);
         }
     }
 }
+}
+
